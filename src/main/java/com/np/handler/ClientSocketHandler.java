@@ -12,6 +12,7 @@ import java.net.Socket;
 public class ClientSocketHandler implements Runnable {
 
     private static final Logger log = LoggerFactory.getLogger(ClientSocketHandler.class);
+    
     private Socket serverConnection = null;
     private final Socket clientSocket;
     private final LoadBalancer loadBalancer;

@@ -14,7 +14,7 @@
 
 ## Types of load balancing
 
-- There are two types of load balancers - layer 4 and layer 7 balancers. This classification is based on [OSI layer](https://en.wikipedia.org/wiki/OSI_model).
+- There are two types of load balancers - layer 4 and layer 7 balancers. This classification is based on [OSI layer](https://en.wikipedia.org/wiki/OSI_model).<br>
   ![](images/osi.png)
 
 ### L4 load balancing

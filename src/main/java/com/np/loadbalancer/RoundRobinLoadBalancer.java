@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class RoundRobinLoadBalancer implements LoadBalancer {
 
-    Logger log = LoggerFactory.getLogger(RoundRobinLoadBalancer.class);
+    private static final Logger log = LoggerFactory.getLogger(RoundRobinLoadBalancer.class);
 
     private final List<Server> servers;
     private final AtomicInteger counter = new AtomicInteger(0);

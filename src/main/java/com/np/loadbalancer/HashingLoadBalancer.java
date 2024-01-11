@@ -9,7 +9,7 @@ import java.util.List;
 
 public class HashingLoadBalancer implements LoadBalancer {
 
-    Logger log = LoggerFactory.getLogger(HashingLoadBalancer.class);
+    private static final Logger log = LoggerFactory.getLogger(HashingLoadBalancer.class);
 
     private final List<Server> servers;
 
