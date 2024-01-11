@@ -1,0 +1,48 @@
+version: "3"
+
+services:
+  load_balancer:
+    image: haproxy:alpine
+    ports:
+      - "8090:8080"
+    volumes:
+      - .:/usr/local/etc/haproxy
+    command: haproxy -f /usr/local/etc/haproxy/l4-lb-docker.cfg
+    networks:
+      - lb-network
+    depends_on:
+      - server1
+      - server2
+      - server3
+      - server4
+
+  server1:
+    build: ../../server
+    ports:
+      - "9000:9000"
+    networks:
+      - lb-network
+  server2:
+    build: ../../server
+    ports:
+      - "9001:9000"
+    networks:
+      - lb-network
+
+  server3:
+    build: ../../server
+    ports:
+      - "9002:9000"
+    networks:
+      - lb-network
+
+  server4:
+    build: ../../server
+    ports:
+      - "9003:9000"
+    networks:
+      - lb-network
+
+networks:
+  lb-network:
+    driver: bridge

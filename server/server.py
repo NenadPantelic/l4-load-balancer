@@ -51,15 +51,18 @@ if __name__ == '__main__':
     while True:
         # Poll the socket to see if there are any newly written data, note excess data dumped to "_" variables
         ready_sockets, _, _ = select.select(
-            [listener_socket],  # list of items we want to check for read-readiness (just our socket)
-            [],  # list of items we want to check for write-readiness (not relevant for this case)
-            [],  # list of items we want to check for "exceptional" conditions (also not relevant for this case)
+            # list of items we want to check for read-readiness (just our socket)
+            [listener_socket],
+            # list of items we want to check for write-readiness (not relevant for this case)
+            [],
+            # list of items we want to check for "exceptional" conditions (also not relevant for this case)
+            [],
             0  # timeout of 0 seconds, makes the method call non-blocking
         )
         # if the value was returned here then there is a connection to read from
         if ready_sockets:
             # select.select() returns a list of readable objects, so we'll iterate, but we only expect a single item
-            for ready_socket in read_ready_sockets:
+            for ready_socket in ready_sockets:
                 # accept the connection from the client and get its socket object and address
                 client_socket, client_address = ready_socket.accept()
 
@@ -69,7 +72,8 @@ if __name__ == '__main__':
 
                 # we send the HTTP response, so HTTP client can actually accept it (render it in case browser sent the
                 # request)
-                client_socket.sendall(generate_http_output(address_port, client_address, client_message))
+                client_socket.sendall(generate_http_output(
+                    address_port, client_address, client_message))
                 try:
                     # close the connection
                     client_socket.close()
