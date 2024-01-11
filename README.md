@@ -118,17 +118,18 @@ After this, we will have 4 servers running on ports 3000, 3001, 3002, 3003.
 3. The LB server will listen at port 8080. Just fire the request to `http://localhost:8080` and check the routing logic.
 
 - If you want to check out the HA proxy example, do the following:
-  **Option 1 **
+
+**Option 1**
 
 1. Install HA proxy locally
 2. Run the servers as explained above
-3. Run haproxy with the specific config file
+3. Run haproxy with the specific config file (in `haproxy` folder)
    1. for L4 load balancer - `haproxy -f l4-lb.cfg`
    2. for L7 load balancer - `haproxy -f l7-lb.cfg`
 
-** Option 2 **
+**Option 2**
 
-1. Run the corresponding docker compose file, e.g.
+1. Run the corresponding docker compose file in `haproxy/config` folder, e.g.
 
 ```bash
 docker compose -f docker-compose-l7.yml up
